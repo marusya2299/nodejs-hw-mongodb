@@ -24,14 +24,13 @@ export function setupServer() {
             },
         }),
     );
-
+    
     app.use('/contacts', contactsRouter);
 
     app.use(notFoundHandler);
     app.use(errorHandler);
 
-    app.listen(PORT, () => {
+     app.listen(PORT, () => {
         console.log(`Server is running on ${PORT}`);
     });
-
 }
