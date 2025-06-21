@@ -7,12 +7,13 @@ export const validateBody = (schema) => async (req, res, next) => {
     next();
   } catch (err) {
     if (err.isJoi) {
-      const error = createHttpError(400, 'Validation error', {
-        errors: err.details.map((e) => e.message),
-      });
-      next(error);
-    } else {
-      next(err);
+      const error = createHttpError(400, 'Validation error');
+      error.details = err.details.map((e) => ({
+        message: e.message,
+        path: e.path.join('.'),
+      }));
+      return next(error);
     }
+    next(err);
   }
 };
