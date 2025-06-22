@@ -10,7 +10,7 @@ import { isValidId } from '../middlewares/isValidId.js';
 import {
   createContactSchema,
   updateContactSchema,
-} from '../controllers/contacts.js';
+} from '../schemas/contacts.js';
 const router = Router();
 
 router.get('/', ctrlWrapper(getContactsController));
