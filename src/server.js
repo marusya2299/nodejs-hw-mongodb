@@ -4,7 +4,9 @@ import express from 'express';
 import  {getEnvVar} from './utils/getEnvVar.js';
 import pino from 'pino-http';
 import cors from 'cors';
-import contactsRouter from './routers/contacts.js';
+import cookieParser from 'cookie-parser';
+
+import apiRouter from './routers/index.js';
 
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
@@ -16,6 +18,7 @@ export function setupServer() {
     app.use(express.json());
 
     app.use(cors());
+    app.use(cookieParser());
 
     app.use(
         pino({
@@ -29,7 +32,7 @@ export function setupServer() {
   res.send('API is working! Try /contacts');
 });
 
-    app.use('/contacts', contactsRouter);
+    app.use(apiRouter);
 
     app.use(notFoundHandler);
     app.use(errorHandler);
