@@ -26,7 +26,11 @@ export const createContactSchema = Joi.object({
     'any.required': '"email" is required',
   }),
 
-  isFavourite: Joi.boolean().default(false).messages({
+ isFavourite: Joi.boolean()
+  .truthy('true')
+  .falsy('false', '')
+  .default(false)
+  .messages({
     'boolean.base': '"isFavourite" must be a boolean',
   }),
 
@@ -35,6 +39,12 @@ export const createContactSchema = Joi.object({
     'string.base': '"contactType" must be a string',
     'any.required': '"contactType" is required',
   }),
+   photo: Joi.any()
+  .optional()
+  .messages({
+    'any.empty': '"photo" must not be empty',
+  }),
+
 });
 
 
@@ -58,14 +68,26 @@ export const updateContactSchema = Joi.object({
     'string.empty': '"email" cannot be empty',
   }),
 
-  isFavourite: Joi.boolean().messages({
+  isFavourite: Joi.boolean()
+  .truthy('true')
+  .falsy('false', '')
+  .default(false)
+  .messages({
     'boolean.base': '"isFavourite" must be a boolean',
   }),
+
+
 
   contactType: Joi.string().valid('work', 'home', 'personal').messages({
     'any.only': '"contactType" must be one of [work, home, personal]',
     'string.base': '"contactType" must be a string',
   }),
+  photo: Joi.any()
+  .optional()
+  .messages({
+    'any.empty': '"photo" must not be empty',
+  }),
+
 }).min(1).messages({
   'object.min': 'At least one field must be provided for update',
 });

@@ -1,0 +1,14 @@
+# swagger/components/responses/400.yaml
+
+description: Bad request
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        status:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Invalid input data
