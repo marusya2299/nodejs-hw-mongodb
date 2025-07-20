@@ -1,39 +1,46 @@
-type: object
-properties:
-  name:
-    description: "Contact's name"
-    type: string
-    minLength: 3
-    maxLength: 20
-    example: "John Doe"
-  phoneNumber:
-    description: "Contact's phone number"
-    type: string
-    minLength: 3
-    maxLength: 20
-    example: "+123456789"
-  email:
-    description: "Contact's mail"
-    type: string
-    format: email
-    example: "john@example.com"
-  isFavourite:
-    description: "Whether is contact favourite or not"
-    type: boolean
-    default: false
-    example: false
-  contactType:
-    description: "Contact's type"
-    type: string
-    enum: [work, home, personal]
-    example: "personal"
-  photo:
-    description: "URL of contact's photo"
-    type: string
-    format: uri
-    example: "https://res.cloudinary.com/uqwgdu/image/upload/image.png"
-required:
-  - name
-  - email
-  - phoneNumber
-  - contactType
+ 
+              type: object
+              required:
+                - name
+                - phoneNumber
+                - email
+                - isFavourite
+                - contactType
+                - userId
+                - _id
+                - createdAt
+                - updatedAt
+              properties:
+                name:
+                  type: string
+                  example: John Doe
+                phoneNumber:
+                  type: string
+                  example: +123456789
+                email:
+                  type: string
+                  example: john@example.com
+                isFavourite:
+                  type: boolean
+                  example: false
+                contactType:
+                  type: string
+                  example: personal
+                userId:
+                  type: string
+                  example: 687614946cc14693324fcbee
+                _id:
+                  type: string
+                  example: 687c993ed2763d1e442af404
+                createdAt:
+                  type: string
+                  format: date-time
+                  example: 2025-07-20T07:22:38.063Z
+                updatedAt:
+                  type: string
+                  format: date-time
+                  example: 2025-07-20T07:22:38.063Z
+                photo:
+                  type: string
+                  format: uri
+                  example: https://res.cloudinary.com/uqwgdu/image/upload/image.png
